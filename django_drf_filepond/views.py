@@ -251,6 +251,9 @@ class LoadView(APIView):
 
         ct = _get_content_type(filename)
 
+        # Remove colons from filename
+        filename = filename.replace(",", "")
+
         response = HttpResponse(data_bytes, content_type=ct)
         response['Content-Disposition'] = ('inline; filename=%s' %
                                            filename)
