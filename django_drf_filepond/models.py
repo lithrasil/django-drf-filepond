@@ -120,6 +120,10 @@ class TemporaryUpload(models.Model):
     uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
                                     blank=True, on_delete=models.CASCADE)
 
+    original_name = models.CharField(max_length=255, default='')
+    mime_type = models.CharField(max_length=50, default='')
+    size = models.IntegerField(default=0)
+
     def get_file_path(self):
         return self.file.path
 
@@ -160,6 +164,11 @@ class StoredUpload(models.Model):
     stored = models.DateTimeField(auto_now_add=True)
     uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
                                     blank=True, on_delete=models.CASCADE)
+
+    original_name = models.CharField(max_length=255, default='')
+    mime_type = models.CharField(max_length=50, default='')
+    size = models.IntegerField(default=0)
+
 
     def get_absolute_file_path(self):
         fsp = local_settings.FILE_STORE_PATH

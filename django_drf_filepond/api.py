@@ -158,6 +158,9 @@ def _store_upload_local(destination_file_path, destination_file_name,
 
     su = StoredUpload(upload_id=temp_upload.upload_id,
                       file=destination_file_path,
+                      size=temp_upload.size,
+                      original_name=temp_upload.original_name,
+                      mime_type=temp_upload.mime_type,
                       uploaded=temp_upload.uploaded,
                       uploaded_by=temp_upload.uploaded_by)
 

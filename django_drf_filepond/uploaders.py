@@ -142,6 +142,8 @@ class FilepondStandardFileUploader(FilepondFileUploader):
         # file and metadata.
         tu = TemporaryUpload(upload_id=upload_id, file_id=file_id,
                              file=file_obj, upload_name=upload_filename,
+                             size=file_obj.size, mime_type=file_obj.content_type,
+                             original_name=file_obj.name,
                              upload_type=TemporaryUpload.FILE_DATA,
                              uploaded_by=_get_user(request))
         tu.save()

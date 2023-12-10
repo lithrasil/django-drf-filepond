@@ -249,7 +249,10 @@ class LoadView(APIView):
         except IOError:
             return HttpResponseServerError('Error reading file...')
 
-        ct = _get_content_type(filename)
+        if not su.mime_type:
+            ct = _get_content_type(filename)
+        else:
+            ct = su.mime_type
 
         # Remove colons from filename
         filename = filename.replace(",", "")
@@ -296,7 +299,11 @@ class RestoreView(APIView):
             return Response('Error reading file data...',
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-        ct = _get_content_type(upload_file_name)
+        if not tu.mime_type:
+            ct = _get_content_type(upload_file_name)
+        else:
+            ct = tu.mime_type
+
 
         response = HttpResponse(data, content_type=ct)
         response['Content-Disposition'] = ('inline; filename=%s' %
