@@ -120,7 +120,6 @@ class TemporaryUpload(models.Model):
     uploaded_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True,
                                     blank=True, on_delete=models.CASCADE)
 
-    original_name = models.CharField(max_length=255, default='')
     mime_type = models.CharField(max_length=50, default='')
     size = models.IntegerField(default=0)
 
